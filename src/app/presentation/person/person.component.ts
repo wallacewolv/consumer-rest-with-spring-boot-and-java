@@ -1,4 +1,3 @@
-// src/app/features/person/person.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,8 +8,6 @@ import { ConfirmDialogComponent } from '@core/components/confirm-dialog/confirm-
 import { CustomDialogComponent } from '@core/components/custom-dialog/custom-dialog.component';
 import { PersonDTO } from '@domain/person/dto/person.dto';
 import { PersonGatewayInterface } from '@infra/interfaces/person/person-gateway.interface';
-
-import { Person } from '../../domain/person/entity/person.entity';
 
 @Component({
   selector: 'app-person',
@@ -67,14 +64,14 @@ export class PersonComponent implements OnInit {
           { key: 'address', label: 'Address', type: 'text' },
           { key: 'gender', label: 'Gender', type: 'text' },
         ],
-        values: { ...new Person(person) },
+        values: { ...person },
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.gateway
-          .updatePerson(person.id.toString(), new Person(result))
+          .updatePerson(person.id.toString(), result)
           .subscribe(() => this.loadPersons());
       }
     });
