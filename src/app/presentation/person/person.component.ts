@@ -10,6 +10,8 @@ import { CustomDialogComponent } from '@core/components/custom-dialog/custom-dia
 import { PersonDTO } from '@domain/person/dto/person.dto';
 import { PersonGatewayInterface } from '@infra/interfaces/person/person-gateway.interface';
 
+import { Person } from '../../domain/person/entity/person.entity';
+
 @Component({
   selector: 'app-person',
   standalone: true,
@@ -65,14 +67,14 @@ export class PersonComponent implements OnInit {
           { key: 'address', label: 'Address', type: 'text' },
           { key: 'gender', label: 'Gender', type: 'text' },
         ],
-        values: { ...person },
+        values: { ...new Person(person) },
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.gateway
-          .updatePerson(person.id.toString(), result)
+          .updatePerson(person.id.toString(), new Person(result))
           .subscribe(() => this.loadPersons());
       }
     });

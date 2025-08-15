@@ -1,6 +1,6 @@
 import { PersonDTO } from '../dto/person.dto';
 
-export class Entity {
+export class Person {
   private _id!: number;
   private _firstName!: string;
   private _lastName!: string;
@@ -32,7 +32,7 @@ export class Entity {
   }
 
   get gender(): string {
-    return this.gender;
+    return this._gender;
   }
 
   changeId(id: number): void {
@@ -55,7 +55,7 @@ export class Entity {
     this._gender = gender;
   }
 
-  toJON(): PersonDTO {
+  toJSON(): PersonDTO {
     return {
       id: this._id,
       firstName: this._firstName,
