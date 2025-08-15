@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
+import { dependencyInjection } from '@core/dependency-injection';
 
 import { routes } from './app.routes';
 
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(BrowserAnimationsModule, FormsModule),
     provideAnimationsAsync(),
+    dependencyInjection,
   ],
 };

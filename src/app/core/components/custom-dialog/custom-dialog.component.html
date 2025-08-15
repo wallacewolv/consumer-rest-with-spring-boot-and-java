@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <ng-container *ngFor="let field of data.fields">
+    <mat-form-field appearance="outline" class="mt-1 full-width">
+      <mat-label>{{ field.label }}</mat-label>
+      <input
+        matInput
+        [type]="field.type"
+        [(ngModel)]="data.values[field.key]"
+      />
+    </mat-form-field>
+  </ng-container>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="dialogRef.close(data.values)"
+  >
+    Save
+  </button>
+</div>
